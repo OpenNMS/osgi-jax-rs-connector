@@ -115,8 +115,6 @@ public class FeatureIntegrationTest {
     public void testJaxRsConnectorFeatureIsInstalled() throws Exception {
         assertThat(featuresService.isInstalled(featuresService.getFeature("jax-rs-connector")), is(true));
         assertThat(featuresService.isInstalled(featuresService.getFeature("jax-rs-provider-jackson")), is(true));
-        // this feature is installed with jax-rs-provider-moxy and should be available as well
-        assertThat(featuresService.isInstalled(featuresService.getFeature("jackson")), is(true));
     }
 
     @Test
