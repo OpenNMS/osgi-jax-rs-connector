@@ -6,11 +6,10 @@ executors:
       - image: 'cimg/openjdk:8.0'
 
 orbs:
-  maven: circleci/maven@1.2.0
+  maven: circleci/maven@1.1.1
 
 workflows:
   maven_test:
     jobs:
       - maven/test:
-          verify_dependencies: false
           executor: jdk8
