@@ -12,4 +12,5 @@ workflows:
   maven_test:
     jobs:
       - maven/test:
+          verify_dependencies: false
           executor: jdk8
