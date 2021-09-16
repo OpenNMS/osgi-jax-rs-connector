@@ -6,14 +6,14 @@
     <parent>
         <groupId>com.eclipsesource</groupId>
         <artifactId>osgi-jaxrs-connector</artifactId>
-        <version>1.0.2.ONMS</version>
+        <version>1.0.3.ONMS</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.eclipsesource.jaxrs</groupId>
     <artifactId>karaf-integration</artifactId>
     <name>Karaf Integration</name>
     <packaging>pom</packaging>
-    <version>1.0.2.ONMS</version>
+    <version>1.0.3.ONMS</version>
     <modules>
         <module>features</module>
         <module>itest</module>

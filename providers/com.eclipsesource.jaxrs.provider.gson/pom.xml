@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>com.eclipsesource</groupId>
 		<artifactId>providers</artifactId>
-		<version>1.0.2.ONMS</version>
+		<version>1.0.3.ONMS</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.eclipsesource.jaxrs</groupId>
 	<artifactId>provider-gson</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.0.2.ONMS</version>
+	<version>1.0.3.ONMS</version>
 	<dependencies>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
