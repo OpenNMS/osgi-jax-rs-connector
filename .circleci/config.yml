@@ -1,15 +1,40 @@
 version: 2.1
 
 executors:
-  jdk8:
+  build-executor:
     docker:
-      - image: 'cimg/openjdk:8.0'
-
-orbs:
-  maven: circleci/maven@1.1.1
+      - image: cimg/openjdk:8.0
+        environment:
+          MAVEN_OPTS: -Xmx1g
 
 workflows:
-  maven_test:
+  build-deploy:
     jobs:
-      - maven/test:
-          executor: jdk8
+      - build
+
+jobs:
+  build:
+    executor: build-executor
+    steps:
+      - checkout
+      - run:
+          name: Run the tests
+          command: |
+            mvn -DskipITs=false clean install test integration-test
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/junit/
+            find . -type f -regex ".*/target/failsafe-reports/.*xml" -exec cp {} ~/junit/ \;
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/junit/ \;
+          when: always
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - store_test_results:
+          path: ~/junit
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
