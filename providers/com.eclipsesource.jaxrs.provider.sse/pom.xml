@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>com.eclipsesource</groupId>
 		<artifactId>providers</artifactId>
-		<version>1.0.3.ONMS-SNAPSHOT</version>
+		<version>1.1.0.ONMS</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.eclipsesource.jaxrs</groupId>
 	<artifactId>provider-sse</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.0.3.ONMS-SNAPSHOT</version>
+	<version>1.1.0.ONMS</version>
 	<dependencies>
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>

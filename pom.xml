@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.eclipsesource</groupId>
 	<artifactId>osgi-jaxrs-connector</artifactId>
-	<version>1.0.3.ONMS-SNAPSHOT</version>
+	<version>1.1.0.ONMS</version>
 	<packaging>pom</packaging>
 	<name>OSGi - JAX-RS Connector</name>
 	<properties>
@@ -148,4 +148,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>cloudsmith</id>
+			<url>https://maven.cloudsmith.io/opennms/3rdparty/</url>
+		</snapshotRepository>
+		<repository>
+			<id>cloudsmith</id>
+			<url>https://maven.cloudsmith.io/opennms/3rdparty/</url>
+		</repository>
+	</distributionManagement>
 </project>

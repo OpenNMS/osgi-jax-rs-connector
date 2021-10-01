@@ -19,10 +19,10 @@ To make use of the project download the latest [http://karaf.apache.org/](Apache
 
 In the Karaf shell run the following commands:
 ```
-feature:repo-add mvn:com.eclipsesource.jaxrs/features/0.0.1-SNAPSHOT/xml/features
+feature:repo-add mvn:com.eclipsesource.jaxrs/features/1.1.0.ONMS/xml/features
 feature:install scr http
 feature:install jax-rs-connector jax-rs-provider-moxy
-install mvn:com.eclipsesource.jaxrs/jax-rs-sample/0.0.1-SNAPSHOT
+install mvn:com.eclipsesource.jaxrs/jax-rs-sample/1.1.0.ONMS
 ```
 
 The first line adds a features repository to let Karaf know how to install the connector.
