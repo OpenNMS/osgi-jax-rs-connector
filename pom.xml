@@ -24,7 +24,7 @@
 		<javaee-web-api.version>7.0</javaee-web-api.version>
 		<jaxrs.version>2.1.1</jaxrs.version>
 		<jax-rs-providers.gson.version>2.3</jax-rs-providers.gson.version>
-		<jersey.version>2.22.2</jersey.version>
+		<jersey.version>2.41</jersey.version>
 		<junit-version>4.13.2</junit-version>
 		<karaf.version>4.3.3</karaf.version>
 		<mockito-version>1.9.5</mockito-version>
