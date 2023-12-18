@@ -1,0 +1,13 @@
+---
+"**/*.adoc":
+  - indigo423
+
+"opennms-doc/**/*":
+  - indigo423
+
+"docs/**/*":
+  - indigo423
+
+".circleci/**/*":
+  - RangerRick
+  - mershad-manesh
