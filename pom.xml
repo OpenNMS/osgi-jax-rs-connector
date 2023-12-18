@@ -17,8 +17,8 @@
 		<!-- Version Properties-->
 		<eclipselink.moxy.version>2.5.2</eclipselink.moxy.version>
 		<findbugs-version>2.5.5</findbugs-version>
-		<jackson.version>2.9.8</jackson.version>
-		<jackson.annotation.version>2.9.0</jackson.annotation.version>
+		<jackson.version>2.16.0</jackson.version>
+		<jackson.annotation.version>${jackson.version}</jackson.annotation.version>
 		<jacocoagent>${basedir}/target/lib/jacocoagent.jar</jacocoagent>
 	  	<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
 		<javaee-web-api.version>7.0</javaee-web-api.version>
