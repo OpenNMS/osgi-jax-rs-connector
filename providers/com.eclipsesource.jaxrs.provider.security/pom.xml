@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>com.eclipsesource</groupId>
 		<artifactId>providers</artifactId>
-		<version>1.1.0.ONMS</version>
+		<version>1.2.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.eclipsesource.jaxrs</groupId>
 	<artifactId>provider-security</artifactId>
 	<packaging>bundle</packaging>
-	<version>1.1.0.ONMS</version>
+	<version>1.2.0-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
