@@ -27,7 +27,7 @@
 		<jersey.version>2.41</jersey.version>
 		<junit-version>4.13.2</junit-version>
 		<karaf.version>4.3.10</karaf.version>
-		<mockito-version>1.9.5</mockito-version>
+		<mockito-version>1.10.19</mockito-version>
 		<org.osgi.core.version>5.0.0</org.osgi.core.version>
 		<org.osgi.compendium.version>5.0.0</org.osgi.compendium.version>
 		<pax-exam.version>4.13.5</pax-exam.version>
