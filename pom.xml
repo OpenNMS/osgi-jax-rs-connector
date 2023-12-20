@@ -15,7 +15,7 @@
 		<test-arguments>-Xms512m -Xmx512m -javaagent:${jacocoagent}=destfile=${basedir}/target/lib/jacoco.jar,append=true</test-arguments>
 
 		<!-- Version Properties-->
-		<eclipselink.moxy.version>2.5.2</eclipselink.moxy.version>
+		<eclipselink.moxy.version>4.0.2</eclipselink.moxy.version>
 		<findbugs-version>2.5.5</findbugs-version>
 		<jackson.version>2.16.0</jackson.version>
 		<jackson.annotation.version>${jackson.version}</jackson.annotation.version>
