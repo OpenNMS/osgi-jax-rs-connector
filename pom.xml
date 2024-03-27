@@ -24,7 +24,7 @@
 		<jacoco.version>0.8.11</jacoco.version>
 		<javaee-web-api.version>8.0.1</javaee-web-api.version>
 		<jaxrs.version>2.1.1</jaxrs.version>
-		<jersey.version>2.41</jersey.version>
+		<jersey.version>2.42</jersey.version>
 		<junit-version>4.13.2</junit-version>
 		<karaf.version>4.3.10</karaf.version>
 		<mockito-version>4.11.0</mockito-version>
