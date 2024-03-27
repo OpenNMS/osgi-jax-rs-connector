@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Run the tests
           command: |
-            mvn -DskipITs=false clean install test integration-test
+            mvn -DskipITs=false clean install
       - run:
           name: Save test results
           command: |
