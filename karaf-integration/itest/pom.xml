@@ -22,12 +22,6 @@
         </dependency>
         <dependency>
             <groupId>com.eclipsesource.jaxrs</groupId>
-            <artifactId>jax-rs-sample</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
             <artifactId>shell-commands</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
@@ -36,28 +30,11 @@
             <groupId>org.apache.karaf</groupId>
             <artifactId>apache-karaf</artifactId>
             <version>${karaf.version}</version>
-            <!--<scope>test</scope>-->
             <type>tar.gz</type>
             <exclusions>
                 <exclusion>
-                    <groupId>org.jledit</groupId>
-                    <artifactId>core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.ops4j.pax.url</groupId>
-                    <artifactId>pax-url-aether</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.aries</groupId>
-                    <artifactId>org.apache.aries.util</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>biz.aQute.bnd</groupId>
-                    <artifactId>bndlib</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.aries.blueprint</groupId>
-                    <artifactId>org.apache.aries.blueprint.core</artifactId>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -72,36 +49,26 @@
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-container-karaf</artifactId>
-            <version>${pax-exam.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-junit4</artifactId>
-            <version>${pax-exam.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.url</groupId>
             <artifactId>pax-url-aether</artifactId>
-            <version>${pax.url.aether.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam</artifactId>
-            <version>${pax-exam.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -125,7 +92,6 @@
             <plugin>
                 <groupId>org.apache.servicemix.tooling</groupId>
                 <artifactId>depends-maven-plugin</artifactId>
-                <version>1.5.0</version>
                 <executions>
                     <execution>
                         <id>generate-depends-file</id>

@@ -27,9 +27,6 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>5.1.9</version>
-				<extensions>true</extensions>
-				<inherited>true</inherited>
 				<configuration>
 					<instructions>
 						<_dsannotations>*</_dsannotations>
@@ -43,13 +40,11 @@
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.core</artifactId>
-			<version>${org.osgi.core.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.compendium</artifactId>
-			<version>${org.osgi.compendium.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

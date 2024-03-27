@@ -13,7 +13,6 @@
     <artifactId>karaf-integration</artifactId>
     <name>Karaf Integration</name>
     <packaging>pom</packaging>
-    <version>1.2.0-SNAPSHOT</version>
     <modules>
         <module>features</module>
         <module>itest</module>
@@ -25,9 +24,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>5.1.9</version>
-                <extensions>true</extensions>
-                <inherited>true</inherited>
                 <configuration>
                     <instructions>
                         <_dsannotations>*</_dsannotations>
@@ -39,26 +35,6 @@
     </build>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.core</artifactId>
-                <version>${org.osgi.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.compendium</artifactId>
-                <version>${org.osgi.compendium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-web-api</artifactId>
-                <version>${javaee-web-api.version}</version>
-            </dependency>
             <!-- osgi jax-rs bundles -->
             <dependency>
                 <groupId>com.eclipsesource.jaxrs</groupId>
