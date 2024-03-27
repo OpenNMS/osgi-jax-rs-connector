@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 EclipseSource and others.
+ * Copyright (c) 2012,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,12 +8,13 @@
  * Contributors:
  *    Holger Staudacher - initial API and implementation
  *    Ivan Iliev - added ServletConfiguration tests
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.publisher.internal;
 
 import static org.junit.Assert.assertSame;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
@@ -28,7 +29,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpService;
@@ -40,9 +41,9 @@ import com.eclipsesource.jaxrs.publisher.ServletConfiguration;
 public class JAXRSConnectorTest {
 
   @Mock
-  private ServiceReference httpServiceReference;
+  private ServiceReference<Object> httpServiceReference;
   @Mock
-  private ServiceReference resourceServiceReference;
+  private ServiceReference<Object> resourceServiceReference;
   @Mock
   private BundleContext bundleContext;
   @Mock
@@ -52,7 +53,7 @@ public class JAXRSConnectorTest {
 
   @Before
   public void setUp() {
-    when( httpServiceReference.getPropertyKeys() ).thenReturn( new String[0] );
+    // when( httpServiceReference.getPropertyKeys() ).thenReturn( new String[0] );
     when( resourceServiceReference.getPropertyKeys() ).thenReturn( new String[0] );
 
     JAXRSConnector originalConnector = new JAXRSConnector(
@@ -186,7 +187,7 @@ public class JAXRSConnectorTest {
     connector.addHttpService( httpServiceReference );
 
     ServletConfiguration servletConfiguration = mock( ServletConfiguration.class );
-    ServiceReference servletConfigurationReference = mock( ServiceReference.class );
+    ServiceReference<Object> servletConfigurationReference = mock( ServiceReference.class );
     when( bundleContext.getService( servletConfigurationReference ) ).thenReturn( servletConfiguration );
 
     connector.setServletConfiguration( servletConfigurationReference );
@@ -204,7 +205,7 @@ public class JAXRSConnectorTest {
 
     // Mock servlet configuration
     ServletConfiguration servletConfiguration = mock( ServletConfiguration.class );
-    ServiceReference servletConfigurationReference = mock( ServiceReference.class );
+    ServiceReference<Object> servletConfigurationReference = mock( ServiceReference.class );
     when( bundleContext.getService( servletConfigurationReference ) ).thenReturn( servletConfiguration );
 
     // Verify that it is not invoked, as long as there is no resource
@@ -224,7 +225,7 @@ public class JAXRSConnectorTest {
   @Test
   public void testServletConfigurationWithoutHttpServices() {
     ServletConfiguration servletConfigurationService = mock( ServletConfiguration.class );
-    ServiceReference servletConfigurationServiceReference = mock( ServiceReference.class );
+    ServiceReference<Object> servletConfigurationServiceReference = mock( ServiceReference.class );
 
     when( bundleContext.getService( servletConfigurationServiceReference ) ).thenReturn( servletConfigurationService );
 
@@ -250,7 +251,7 @@ public class JAXRSConnectorTest {
     connector.addResource( resourceServiceReference );
 
     ApplicationConfiguration appConfiguration = mock( ApplicationConfiguration.class );
-    ServiceReference applicationConfigurationReference = mock( ServiceReference.class );
+    ServiceReference<Object> applicationConfigurationReference = mock( ServiceReference.class );
     when( bundleContext.getService( applicationConfigurationReference ) ).thenReturn( appConfiguration );
 
     connector.addApplicationConfiguration( applicationConfigurationReference );
@@ -270,7 +271,7 @@ public class JAXRSConnectorTest {
     connector.addResource( resourceServiceReference );
 
     ApplicationConfiguration appConfiguration = mock( ApplicationConfiguration.class );
-    ServiceReference applicationConfigurationReference = mock( ServiceReference.class );
+    ServiceReference<Object> applicationConfigurationReference = mock( ServiceReference.class );
     when( bundleContext.getService( applicationConfigurationReference ) ).thenReturn( appConfiguration );
     connector.addApplicationConfiguration( applicationConfigurationReference );
 

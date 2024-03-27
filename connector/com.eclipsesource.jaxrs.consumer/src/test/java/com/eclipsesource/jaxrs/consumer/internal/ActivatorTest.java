@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 EclipseSource and others.
+ * Copyright (c) 2012,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,12 +7,15 @@
  *
  * Contributors:
  *    Holger Staudacher - initial API and implementation
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
+
 package com.eclipsesource.jaxrs.consumer.internal;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -48,15 +51,15 @@ public class ActivatorTest {
     
     verify( context ).registerService( eq( ConsumerPublisher.class.getName() ), 
                                        any( ConsumerPublisherImpl.class ), 
-                                       any( Dictionary.class ) );
+                                       nullable( Dictionary.class ) );
   }
   
   @Test
   public void testUnregistersPublisher() throws Exception {
     Activator activator = new Activator();
     BundleContext context = mock( BundleContext.class );
-    ServiceRegistration registration = mock( ServiceRegistration.class );
-    when( context.registerService( anyString(), any(), any( Dictionary.class ) ) ).thenReturn( registration );
+    ServiceRegistration<Object> registration = mock( ServiceRegistration.class );
+    when( context.registerService( anyString(), any(), nullable( Dictionary.class ) ) ).thenReturn( registration );
     activator.start( context );
 
     activator.stop( context );
@@ -68,9 +71,9 @@ public class ActivatorTest {
   public void testUnregistersPublishedServices() throws Exception {
     Activator activator = new Activator();
     BundleContext context = mock( BundleContext.class );
-    ServiceRegistration registration = mock( ServiceRegistration.class );
+    ServiceRegistration<Object> registration = mock( ServiceRegistration.class );
     ArgumentCaptor<ConsumerPublisher> captor = ArgumentCaptor.forClass( ConsumerPublisher.class );
-    when( context.registerService( anyString(), captor.capture(), any( Dictionary.class ) ) ).thenReturn( registration );
+    when( context.registerService( anyString(), captor.capture(), nullable( Dictionary.class ) ) ).thenReturn( registration );
     activator.start( context );
     captor.getValue().publishConsumers( "http://localhost", new Class<?>[] { Resource1.class }, null );
     

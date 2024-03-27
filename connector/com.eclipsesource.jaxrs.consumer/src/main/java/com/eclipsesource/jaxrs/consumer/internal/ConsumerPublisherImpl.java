@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012-2013 EclipseSource and others.
+ * Copyright (c) 2012-2013,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *    Holger Staudacher - initial API and implementation, ongoing development
  *    Frank Appel - specified property to exclude resources from publishing
  *    ProSyst Software GmbH. - compatibility with OSGi specification 4.2 APIs
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.consumer.internal;
 
@@ -28,10 +29,10 @@ import com.eclipsesource.jaxrs.consumer.ConsumerPublisher;
 public class ConsumerPublisherImpl implements ConsumerPublisher {
 
   private final BundleContext context;
-  private final List<ServiceRegistration> registrations;
+  private final List<ServiceRegistration<Object>> registrations;
 
   public ConsumerPublisherImpl( BundleContext context ) {
-    this.registrations = new ArrayList<ServiceRegistration>();
+    this.registrations = new ArrayList<>();
     this.context = context;
   }
 
@@ -41,7 +42,7 @@ public class ConsumerPublisherImpl implements ConsumerPublisher {
       ClientConfig config = new ClientConfig();
       registerProviders( config, providers );
       Object resource = ConsumerFactory.createConsumer( baseUrl, config, type );
-      Dictionary<String, Object> properties = new Hashtable<String, Object>();
+      Dictionary<String, Object> properties = new Hashtable<>();
       properties.put( "com.eclipsesource.jaxrs.publish", "false" );
       ServiceRegistration registration = context.registerService( type.getName(), resource, properties );
       registrations.add( registration );
@@ -57,7 +58,7 @@ public class ConsumerPublisherImpl implements ConsumerPublisher {
   }
 
   public void unregister() {
-    for( ServiceRegistration registration : registrations ) {
+    for( ServiceRegistration<Object> registration : registrations ) {
       registration.unregister();
     }
   }

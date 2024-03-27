@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 EclipseSource and others.
+ * Copyright (c) 2012,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,14 +7,16 @@
  *
  * Contributors:
  *    Holger Staudacher - initial API and implementation
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.consumer.internal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -52,8 +54,8 @@ public class ConsumerPublisherImplTest {
     
     publisher.publishConsumers( "http://localhost", new Class[] { Resource1.class, Resource2.class }, null );
     
-    verify( context ).registerService( eq( Resource1.class.getName() ), any( Resource1.class ), any( Dictionary.class ) );
-    verify( context ).registerService( eq( Resource2.class.getName() ), any( Resource2.class ), any( Dictionary.class ) );
+    verify( context ).registerService( eq( Resource1.class.getName() ), any( Resource1.class ), nullable( Dictionary.class ) );
+    verify( context ).registerService( eq( Resource2.class.getName() ), any( Resource2.class ), nullable( Dictionary.class ) );
   }
   
   @Test
@@ -75,8 +77,8 @@ public class ConsumerPublisherImplTest {
   public void testUnregisterServices() {
     BundleContext context = mock( BundleContext.class );
     ConsumerPublisherImpl publisher = new ConsumerPublisherImpl( context );
-    ServiceRegistration registration = mock( ServiceRegistration.class );
-    when( context.registerService( anyString(), any(), any( Dictionary.class ) ) ).thenReturn( registration );
+    ServiceRegistration<Object> registration = mock( ServiceRegistration.class );
+    when( context.registerService( anyString(), any(), nullable( Dictionary.class ) ) ).thenReturn( registration );
     publisher.publishConsumers( "http://localhost", new Class[] { Resource1.class, Resource2.class }, null );
     
     publisher.unregister();

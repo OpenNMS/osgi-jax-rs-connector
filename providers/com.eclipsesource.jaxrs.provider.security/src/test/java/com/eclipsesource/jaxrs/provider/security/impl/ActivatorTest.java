@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 EclipseSource and others.
+ * Copyright (c) 2013,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,12 +8,14 @@
  * Contributors:
  *    Holger Staudacher - initial API and implementation
  *    ProSyst Software GmbH. - compatibility with OSGi specification 4.2 APIs
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.provider.security.impl;
 
 import static org.junit.Assert.assertSame;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -44,7 +46,7 @@ public class ActivatorTest {
     
     verify( context ).registerService( eq( RolesAllowedDynamicFeatureImpl.class.getName() ), 
                                        any( RolesAllowedDynamicFeatureImpl.class ), 
-                                       any( Dictionary.class ) );
+                                       nullable( Dictionary.class ) );
   }
   
   @Test
@@ -56,6 +58,6 @@ public class ActivatorTest {
     
     verify( context ).registerService( eq( ContainerRequestFilterImpl.class.getName() ), 
                                        any( ContainerRequestFilterImpl.class ), 
-                                       any( Dictionary.class ) );
+                                       nullable( Dictionary.class ) );
   }
 }

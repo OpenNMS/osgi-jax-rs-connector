@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 EclipseSource and others.
+ * Copyright (c) 2014,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,11 +8,13 @@
  * Contributors:
  *    Holger Staudacher - initial API and implementation
  *    ProSyst Software GmbH. - compatibility with OSGi specification 4.2 APIs
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.provider.sse;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,17 +36,21 @@ public class ActivatorTest {
     
     activator.start( context );
     
-    verify( context ).registerService( eq( SseFeature.class.getName() ), any( SseFeature.class ), any( Dictionary.class ) );
+    verify( context ).registerService(
+            eq( SseFeature.class.getName() ),
+            any( SseFeature.class ),
+            nullable( Dictionary.class )
+    );
   }
   
   @Test
   public void testUnregistersSseProviderOnStop() throws Exception {
     Activator activator = new Activator();
     BundleContext context = mock( BundleContext.class );
-    ServiceRegistration registration = mock( ServiceRegistration.class );
-    when( context.registerService( any( String.class ), any( Object.class ), any( Dictionary.class ) ) ).thenReturn( registration );
+    ServiceRegistration<Object> registration = mock( ServiceRegistration.class );
+    when( context.registerService( any( String.class ), any( Object.class ), nullable( Dictionary.class ) ) ).thenReturn( registration );
+
     activator.start( context );
-    
     activator.stop( context );
     
     verify( registration ).unregister();

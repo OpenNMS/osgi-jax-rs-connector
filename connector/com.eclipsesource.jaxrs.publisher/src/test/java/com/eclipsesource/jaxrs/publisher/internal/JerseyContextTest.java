@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012,2015 EclipseSource and others.
+ * Copyright (c) 2012,2015,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,13 +8,15 @@
  * Contributors:
  *    Holger Staudacher - initial API and implementation
  *    Ivan Iliev - added tests for ServletConfigurationTracker
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.publisher.internal;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -30,8 +32,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 
 import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.servlet.ServletContainer;
@@ -39,7 +41,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpContext;
@@ -80,7 +82,12 @@ public class JerseyContextTest {
     jerseyContext.addResource( resource );
 
     verify( rootApplication ).addResource( resource );
-    verify( httpService ).registerServlet( eq( "/test" ), any( ServletContainer.class ), any( Dictionary.class ), any( HttpContext.class ) );
+    verify( httpService ).registerServlet(
+            eq( "/test" ),
+            any( HttpServlet.class ),
+            nullable( Dictionary.class ),
+            nullable( HttpContext.class )
+    );
   }
 
   @Test
@@ -93,7 +100,12 @@ public class JerseyContextTest {
 
     verify( rootApplication ).addResource( resource );
     verify( rootApplication ).removeResource( resource );
-    verify( httpService ).registerServlet( eq( "/test" ), any( ServletContainer.class ), any( Dictionary.class ), any( HttpContext.class ) );
+    verify( httpService ).registerServlet(
+            eq( "/test" ),
+            any( HttpServlet.class ),
+            nullable( Dictionary.class ),
+            nullable( HttpContext.class )
+    );
     verify( httpService ).unregister( "/test" );
   }
 
@@ -111,7 +123,12 @@ public class JerseyContextTest {
     verify( rootApplication ).addResource( resource );
     verify( rootApplication ).addResource( resource2 );
     verify( rootApplication ).removeResource( resource );
-    verify( httpService ).registerServlet( eq( "/test" ), any( ServletContainer.class ), any( Dictionary.class ), any( HttpContext.class ) );
+    verify( httpService ).registerServlet(
+            eq( "/test" ),
+            any( HttpServlet.class ),
+            nullable( Dictionary.class ),
+            nullable( HttpContext.class )
+    );
     verify( httpService, never() ).unregister( "/test" );
   }
 
@@ -133,7 +150,8 @@ public class JerseyContextTest {
 
   @Test
   public void testEliminateDoesNotFailWithException() throws ServletException, NamespaceException {
-    doThrow( Exception.class ).when( httpService ).unregister( anyString() );
+    doThrow( IllegalArgumentException.class ).when( httpService ).unregister( anyString() );
+
     Object resource = new Object();
     Set<Object> list = new HashSet<Object>();
     list.add( resource );
@@ -151,9 +169,9 @@ public class JerseyContextTest {
   @Test( expected = IllegalStateException.class )
   public void testConvertsServletException() throws ServletException, NamespaceException {
     doThrow( new ServletException() ).when( httpService ).registerServlet( anyString(),
-                                                                           any( Servlet.class ),
-                                                                           any( Dictionary.class ),
-                                                                           any( HttpContext.class ) );
+                                                                           any( HttpServlet.class ),
+                                                                           nullable( Dictionary.class ),
+                                                                           nullable( HttpContext.class ) );
 
     jerseyContext.addResource( new Object() );
   }
@@ -162,9 +180,9 @@ public class JerseyContextTest {
   public void testConvertsNamespaceException() throws ServletException, NamespaceException {
     doThrow( new NamespaceException( "test" ) )
       .when( httpService ).registerServlet( anyString(),
-                                            any( Servlet.class ),
-                                            any( Dictionary.class ),
-                                            any( HttpContext.class ) );
+                                            any( HttpServlet.class ),
+                                            nullable( Dictionary.class ),
+                                            nullable( HttpContext.class ) );
 
     jerseyContext.addResource( new Object() );
   }
@@ -202,7 +220,7 @@ public class JerseyContextTest {
   @Test
   public void testAddsApplicationConfigurationsOnStart() {
     ServiceContainer container = new ServiceContainer( bundleContext );
-    ServiceReference reference = mock( ServiceReference.class );
+    ServiceReference<Object> reference = mock( ServiceReference.class );
     ApplicationConfiguration appConfig = mock( ApplicationConfiguration.class );
     Map<String, Object> map = new HashMap<>();
     map.put( "foo", "bar" );
@@ -247,7 +265,7 @@ public class JerseyContextTest {
   public void testUpdateAppConfiguration() {
     BundleContext context = mock( BundleContext.class );
     ServiceContainer container = new ServiceContainer( context );
-    ServiceReference reference = mock( ServiceReference.class );
+    ServiceReference<Object> reference = mock( ServiceReference.class );
     ApplicationConfiguration appConfig = mock( ApplicationConfiguration.class );
     Map<String, Object> map = new HashMap<>();
     map.put( "foo", "bar" );

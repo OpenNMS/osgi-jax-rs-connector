@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 EclipseSource and others.
+ * Copyright (c) 2012,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *    Holger Staudacher - initial API and implementation
  *    ProSyst Software GmbH. - compatibility with OSGi specification 4.2 APIs
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.consumer.internal;
 
@@ -20,7 +21,7 @@ import com.eclipsesource.jaxrs.consumer.ConsumerPublisher;
 
 public class Activator implements BundleActivator {
 
-  private ServiceRegistration registration;
+  private ServiceRegistration<?> registration;
   private ConsumerPublisherImpl publisher;
 
   @Override

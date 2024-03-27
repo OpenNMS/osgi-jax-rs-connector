@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2015 Holger Staudacher and others.
+ * Copyright (c) 2015,2024 Holger Staudacher and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    Holger Staudacher - initial API and implementation
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.publisher.internal;
 
@@ -17,7 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
@@ -31,7 +32,7 @@ public class ApplicationConfigurationTrackerTest {
   @Mock
   private JAXRSConnector connector;
   @Mock
-  private ServiceReference reference;
+  private ServiceReference<Object> reference;
 
   @Before
   public void setUp() {

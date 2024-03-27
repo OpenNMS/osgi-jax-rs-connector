@@ -1,9 +1,9 @@
 /* ProSyst Software GmbH. - compatibility with OSGi specification 4.2 APIs */
 package com.eclipsesource.jaxrs.provider.gson;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,15 +26,19 @@ public class ActivatorTest {
     
     activator.start( context );
     
-    verify( context ).registerService( eq( GsonProvider.class.getName() ), any( GsonProvider.class ), any( Dictionary.class ) );
+    verify( context ).registerService(
+            eq( GsonProvider.class.getName() ),
+            any( GsonProvider.class ),
+            nullable( Dictionary.class )
+    );
   }
   
   @Test
   public void testStopUnregistersProvider() throws Exception {
     Activator activator = new Activator();
     BundleContext context = mock( BundleContext.class );
-    ServiceRegistration registration = mock( ServiceRegistration.class );
-    when( context.registerService( any( String.class ), anyObject(), any( Dictionary.class ) ) )
+    ServiceRegistration<Object> registration = mock( ServiceRegistration.class );
+    when( context.registerService( any( String.class ), any(), nullable( Dictionary.class ) ) )
       .thenReturn( registration );
     
     activator.start( context );

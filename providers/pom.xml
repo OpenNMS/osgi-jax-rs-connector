@@ -9,7 +9,6 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.eclipsesource</groupId>
 	<artifactId>providers</artifactId>
 	<packaging>pom</packaging>
 	<name>OSGi - JAX-RS Connector - Providers</name>

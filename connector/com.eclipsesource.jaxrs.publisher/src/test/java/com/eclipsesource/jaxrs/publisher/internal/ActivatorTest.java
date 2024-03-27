@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 EclipseSource and others.
+ * Copyright (c) 2012,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,13 +7,15 @@
  *
  * Contributors:
  *    Holger Staudacher - initial API and implementation
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
+
 package com.eclipsesource.jaxrs.publisher.internal;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -27,7 +29,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Filter;
@@ -45,9 +47,9 @@ public class ActivatorTest {
   @Mock
   private BundleContext context;
   @Mock
-  private ServiceRegistration connectorRegistration;
+  private ServiceRegistration<Object> connectorRegistration;
   @Mock
-  private ServiceRegistration configRegistration;
+  private ServiceRegistration<Object> configRegistration;
   @Mock
   private Bundle jerseyServer;
 
@@ -59,11 +61,11 @@ public class ActivatorTest {
     Filter filter = mock( Filter.class );
     when( context.createFilter( anyString() ) ).thenReturn( filter );
     when( context.registerService( eq( JAXRSConnector.class.getName() ), 
-                                   anyObject(), 
-                                   any( Dictionary.class ) ) ).thenReturn( connectorRegistration );
+                                   any(), 
+                                   nullable( Dictionary.class ) ) ).thenReturn( connectorRegistration );
     when( context.registerService( eq( ManagedService.class.getName() ), 
-                                   anyObject(), 
-                                   any( Dictionary.class ) ) ).thenReturn( configRegistration );
+                                   any(), 
+                                   nullable( Dictionary.class ) ) ).thenReturn( configRegistration );
   }
   
   @Test
@@ -72,10 +74,10 @@ public class ActivatorTest {
     
     verify( context ).registerService( eq( JAXRSConnector.class.getName() ), 
                                        any( JAXRSConnector.class ), 
-                                       any( Dictionary.class ) );
+                                       nullable( Dictionary.class ) );
     verify( context ).registerService( eq( ManagedService.class.getName() ), 
                                        any( Configuration.class ), 
-                                       any( Dictionary.class ) );
+                                       nullable( Dictionary.class ) );
   }
   
   @Test

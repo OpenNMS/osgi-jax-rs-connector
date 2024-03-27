@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2015 EclipseSource and others.
+ * Copyright (c) 2015,2024 EclipseSource and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,12 +7,14 @@
  *
  * Contributors:
  *    Holger Staudacher - initial API and implementation
+ *    Benjamin Reed - test updates to newer Mockito, generics cleanup
  ******************************************************************************/
 package com.eclipsesource.jaxrs.provider.swagger.internal;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -46,7 +48,7 @@ public class ActivatorTest {
 
     verify( context ).registerService( eq( ApiListingResource.class.getName() ),
                                        any( ApiListingResource.class ),
-                                       any( Dictionary.class ) );
+                                       nullable( Dictionary.class ) );
   }
 
   @Test
@@ -57,7 +59,7 @@ public class ActivatorTest {
 
     verify( context ).registerService( eq( SwaggerSerializers.class.getName() ),
                                        any( SwaggerSerializers.class ),
-                                       any( Dictionary.class ) );
+                                       nullable( Dictionary.class ) );
   }
 
   @Test
