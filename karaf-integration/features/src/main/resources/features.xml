@@ -1,39 +1,69 @@
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="osgi-jax-rs-connector">
+    <repository>mvn:org.apache.karaf.features/standard/${karaf.version}/xml/features</repository>
+    <repository>mvn:org.apache.karaf.features/specs/${karaf.version}/xml/features</repository>
 
-    <feature name="jax-rs-connector" version="${project.version}" resolver="(obr)" description="Jersey JAX RS OSGi Connector">
-        <feature>scr</feature>
-        <bundle dependency="true">mvn:javax.annotation/javax.annotation-api/1.2</bundle>
-        <bundle dependency="true">mvn:javax.servlet/javax.servlet-api/${servlet.version}</bundle>
-        <bundle dependency="true">mvn:com.eclipsesource.jaxrs/jersey-min/${project.version}</bundle>
-        <bundle>mvn:com.eclipsesource.jaxrs/consumer/${project.version}</bundle>
-        <bundle>mvn:com.eclipsesource.jaxrs/publisher/${project.version}</bundle>
+    <feature name="jax-rs-publisher-api" version="${project.version}" description="Jersey JAX RS OSGi Publisher API">
+        <feature>javax-ws-rs</feature>
         <bundle>mvn:com.eclipsesource.jaxrs/publisher-api/${project.version}</bundle>
     </feature>
 
+    <feature name="jax-rs-connector" version="${project.version}" resolver="(obr)" description="Jersey JAX RS OSGi Connector">
+        <feature>activation</feature>
+        <feature>scr</feature>
+        <feature>jax-rs-consumer</feature>
+        <feature>jax-rs-publisher</feature>
+        <bundle dependency="true">mvn:com.eclipsesource.jaxrs/jersey-min/${project.version}</bundle>
+    </feature>
+
+    <feature name="jax-rs-consumer" version="${project.version}" resolver="(obr)" description="Jersey JAX RS OSGi Consumer">
+        <feature>javax-ws-rs</feature>
+        <feature>jersey</feature>
+        <feature>jersey-media-multipart</feature>
+        <bundle>mvn:com.eclipsesource.jaxrs/consumer/${project.version}</bundle>
+    </feature>
+
+    <feature name="jax-rs-publisher" version="${project.version}" resolver="(obr)" description="Jersey JAX RS OSGi Publisher">
+        <feature>jax-rs-publisher-api</feature>
+        <feature>jersey</feature>
+        <bundle dependency="true">mvn:javax.servlet/javax.servlet-api/${servlet.version}</bundle>
+        <bundle dependency="true">mvn:org.osgi/org.osgi.compendium/${org.osgi.compendium.version}</bundle>
+        <bundle>mvn:com.eclipsesource.jaxrs/publisher/${project.version}</bundle>
+    </feature>
+
     <feature name="jax-rs-provider-moxy" version="${project.version}" description="Moxy Json Provider for Jersey">
+        <feature>jax-rs-provider-base</feature>
         <feature version="${eclipselink.moxy.version}">eclipselink-moxy</feature>
         <bundle>mvn:com.eclipsesource.jaxrs/provider-moxy/${project.version}</bundle>
     </feature>
     
-    <feature  name='jax-rs-provider-jackson' version='${project.version}' description="Jackson Json Provider for Jersey" >
+    <feature name="jax-rs-provider-jackson" version="${project.version}" description="Jackson Json Provider for Jersey" >
+        <feature>jax-rs-provider-base</feature>
         <feature version="${jackson.version}">jackson</feature>
         <bundle>mvn:com.eclipsesource.jaxrs/provider-jackson/${project.version}</bundle>
     </feature>
 
     <feature name="jax-rs-provider-gson" version="${gson.version}">
+        <feature>jax-rs-provider-base</feature>
         <bundle dependency="true">mvn:com.google.code.gson/gson/${gson.version}</bundle>
         <bundle>mvn:com.eclipsesource.jaxrs/provider-gson/${project.version}</bundle>
     </feature>
 
     <feature name="jax-rs-provider-multipart" version="${project.version}">
+        <feature>jax-rs-provider-base</feature>
+        <feature>jersey-media-multipart</feature>
         <bundle>mvn:com.eclipsesource.jaxrs/provider-multipart/${project.version}</bundle>
     </feature>
 
     <feature name="jax-rs-provider-security" version="${project.version}">
+        <feature>jax-rs-provider-base</feature>
+        <feature>jersey</feature>
         <bundle>mvn:com.eclipsesource.jaxrs/provider-security/${project.version}</bundle>
     </feature>
 
     <feature name="jax-rs-provider-sse" version="${project.version}">
+        <feature>jax-rs-provider-base</feature>
+        <feature>jersey</feature>
+        <bundle dependency="true">mvn:org.glassfish.jersey.media/jersey-media-sse/${jersey.version}</bundle>
         <bundle>mvn:com.eclipsesource.jaxrs/provider-sse/${project.version}</bundle>
     </feature>
     
@@ -44,18 +74,27 @@
     <!--</feature>-->
 
     <feature name="eclipselink-moxy" version="${eclipselink.moxy.version}" description="Eclipselink :: Moxy">
-        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.core/${eclipselink.moxy.version}</bundle>
-        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.asm/${eclipselink.moxy.version}</bundle>
         <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.antlr/${eclipselink.moxy.version}</bundle>
+        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.asm/${eclipselink.asm.version}</bundle>
+        <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.core/${eclipselink.moxy.version}</bundle>
         <bundle dependency="true">mvn:org.eclipse.persistence/org.eclipse.persistence.moxy/${eclipselink.moxy.version}</bundle>
     </feature>
 
     <feature name="jax-rs-shell-commands" version="${project.version}" description="JAX RS OSGi Shell Commands">
-        <bundle>mvn:com.eclipsesource.jaxrs/publisher-api/${project.version}</bundle>
+        <feature>shell</feature>
+        <feature>jax-rs-publisher-api</feature>
         <bundle>mvn:com.eclipsesource.jaxrs/shell-commands/${project.version}</bundle>
     </feature>
 
     <!-- Dependency Features -->
+    <feature name="javax-ws-rs" version="${project.version}" description="Java RESTful Web Services">
+        <bundle dependency="true">mvn:javax.ws.rs/javax.ws.rs-api/${jaxrs.version}</bundle>
+    </feature>
+
+    <feature name="jax-rs-provider-base" version="${project.version}" description="Common Jersey Provider Dependencies">
+        <feature>javax-ws-rs</feature>
+    </feature>
+
     <feature name="jackson" version="${jackson.version}" description="Jackson :: Jaxrs">
         <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.annotation.version}</bundle>
         <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
@@ -65,4 +104,19 @@
         <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
     </feature>
 
+    <feature name="jersey" version="${jersey.version}" description="Jersey">
+        <bundle dependency="true">mvn:org.glassfish.hk2/osgi-resource-locator/${osgi.resource.locator.version}</bundle>
+        <bundle dependency="true">mvn:org.glassfish.hk2.external/jakarta.inject/${jakarta.inject.version}</bundle>
+        <bundle dependency="true">mvn:javax.annotation/javax.annotation-api/${annotation-api.version}</bundle>
+        <bundle dependency="true">mvn:org.glassfish.jersey.containers/jersey-container-servlet-core/${jersey.version}</bundle>
+        <bundle dependency="true">mvn:org.glassfish.jersey.core/jersey-common/${jersey.version}</bundle>
+        <bundle dependency="true">mvn:org.glassfish.jersey.core/jersey-client/${jersey.version}</bundle>
+        <bundle dependency="true">mvn:org.glassfish.jersey.core/jersey-server/${jersey.version}</bundle>
+    </feature>
+
+    <feature name="jersey-media-multipart" version="${jersey.version}" description="Jersey :: Media :: Multipart">
+        <feature>jersey</feature>
+        <bundle dependency="true">mvn:org.jvnet.mimepull/mimepull/${mimepull.version}</bundle>
+        <bundle dependency="true">mvn:org.glassfish.jersey.media/jersey-media-multipart/${jersey.version}</bundle>
+    </feature>
 </features>

@@ -56,7 +56,63 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-maven-plugin</artifactId>
+                <configuration>
+                    <skip>${skipTests}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>verify</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>file:${project.build.directory}/resources/features.xml</descriptor>
+                            </descriptors>
+                            <distribution>org.apache.karaf.features:framework</distribution>
+                            <javase>1.8</javase>
+                            <framework>
+                                <feature>framework</feature>
+                            </framework>
+                            <features>
+                                <feature>eclipselink-moxy</feature>
+                                <feature>jackson</feature>
+                                <feature>javax-ws-rs</feature>
+                                <feature>jax-rs-connector</feature>
+                                <feature>jax-rs-consumer</feature>
+                                <feature>jax-rs-provider-base</feature>
+                                <feature>jax-rs-provider-gson</feature>
+                                <feature>jax-rs-provider-jackson</feature>
+                                <feature>jax-rs-provider-moxy</feature>
+                                <feature>jax-rs-provider-multipart</feature>
+                                <feature>jax-rs-provider-security</feature>
+                                <feature>jax-rs-provider-sse</feature>
+                                <feature>jax-rs-publisher-api</feature>
+                                <feature>jax-rs-publisher</feature>
+                                <feature>jax-rs-shell-commands</feature>
+                                <feature>jersey-media-multipart</feature>
+                                <feature>jersey</feature>
+                                <feature>osgi-jax-rs-connector</feature>
+                            </features>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
+    <dependencies>
+        <!-- Framework distribution -->
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <version>${karaf.version}</version>
+            <type>kar</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
