@@ -16,11 +16,9 @@
 
 		<!-- Version Properties-->
 		<eclipselink.moxy.version>2.7.14</eclipselink.moxy.version>
-		<findbugs-version>2.5.5</findbugs-version>
 		<jackson.version>2.17.0</jackson.version>
 		<jackson.annotation.version>${jackson.version}</jackson.annotation.version>
 		<jacocoagent>${basedir}/target/lib/jacocoagent.jar</jacocoagent>
-	  	<javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
 		<javaee-web-api.version>8.0.1</javaee-web-api.version>
 		<jaxrs.version>2.1.1</jaxrs.version>
 		<jax-rs-providers.gson.version>2.3</jax-rs-providers.gson.version>
@@ -91,37 +89,39 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--<plugin>-->
-				<!--<groupId>org.apache.maven.plugins</groupId>-->
-				<!--<artifactId>maven-javadoc-plugin</artifactId>-->
-				<!--<version>2.10</version>-->
-				<!--<executions>-->
-				  <!--<execution>-->
-					<!--<id>attach-javadocs</id>-->
-					<!--<goals>-->
-					  <!--<goal>jar</goal>-->
-					<!--</goals>-->
-				  <!--</execution>-->
-				<!--</executions>-->
-			  <!--</plugin>-->
-				<!-- Configure FindBugs -->
-				<!--<plugin>-->
-					<!--<groupId>org.codehaus.mojo</groupId>-->
-					<!--<artifactId>findbugs-maven-plugin</artifactId>-->
-					<!--<version>${findbugs-version}</version>-->
-					<!--<configuration>-->
-						<!--<findbugsXmlOutput>true</findbugsXmlOutput>-->
-						<!--<failOnError>false</failOnError>-->
-					<!--</configuration>-->
-					<!--<executions>-->
-						<!--<execution>-->
-							<!--<goals>-->
-								<!--<goal>check</goal>-->
-							<!--</goals>-->
-						<!--</execution>-->
-					<!--</executions>-->
-				<!--</plugin>-->
-			</plugins>
+			<!--
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skipTests}</skip>
+					<xmlOutput>true</xmlOutput>
+					<failOnError>false</failOnError>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
