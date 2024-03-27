@@ -2,6 +2,8 @@ bin
 .DS_Store
 target
 .idea
+.classpath
+.settings
 .*.swp
 *.iml
 *.versionsBackup
