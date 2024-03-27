@@ -3,6 +3,7 @@ bin
 target
 .idea
 .classpath
+.project
 .settings
 .*.swp
 *.iml
