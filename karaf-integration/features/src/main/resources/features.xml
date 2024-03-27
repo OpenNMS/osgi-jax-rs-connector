@@ -20,8 +20,8 @@
         <bundle>mvn:com.eclipsesource.jaxrs/provider-jackson/${project.version}</bundle>
     </feature>
 
-    <feature name="jax-rs-provider-gson" version="${jax-rs-providers.gson.version}">
-        <bundle dependency="true">mvn:com.google.code.gson/gson/2.3</bundle>
+    <feature name="jax-rs-provider-gson" version="${gson.version}">
+        <bundle dependency="true">mvn:com.google.code.gson/gson/${gson.version}</bundle>
         <bundle>mvn:com.eclipsesource.jaxrs/provider-gson/${project.version}</bundle>
     </feature>
 
