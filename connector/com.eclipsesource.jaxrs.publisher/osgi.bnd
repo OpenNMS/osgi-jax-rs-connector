@@ -1,2 +1,0 @@
-Bundle-Activator: com.eclipsesource.jaxrs.publisher.internal.Activator
-Bundle-RequiredExecutionEnvironment: ${required.jdk.version}

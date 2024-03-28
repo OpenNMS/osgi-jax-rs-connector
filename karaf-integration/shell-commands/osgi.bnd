@@ -1,2 +1,0 @@
-Bundle-RequiredExecutionEnvironment: ${required.jdk.version}
-Karaf-Commands: *

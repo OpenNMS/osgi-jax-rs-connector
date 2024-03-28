@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.eclipsesource.jaxrs</groupId>
+        <groupId>org.opennms.eclipsesource.jaxrs</groupId>
         <artifactId>karaf-integration</artifactId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -74,7 +74,7 @@
                                 <descriptor>file:${project.build.directory}/resources/features.xml</descriptor>
                             </descriptors>
                             <distribution>org.apache.karaf.features:framework</distribution>
-                            <javase>1.8</javase>
+                            <javase>11</javase>
                             <framework>
                                 <feature>framework</feature>
                             </framework>
@@ -116,75 +116,63 @@
         </dependency>
         <!-- project dependencies -->
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>consumer</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>jersey-min</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>publisher-api</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>publisher</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>provider-gson</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>provider-jackson</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>provider-moxy</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>provider-multipart</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>provider-security</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>provider-sse</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>provider-swagger</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>shell-commands</artifactId>
-            <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

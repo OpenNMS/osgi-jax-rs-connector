@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Swagger Provider Test
+Bundle-SymbolicName: org.opennms.eclipsesource.jaxrs.provider.swagger.test
+Bundle-Version: 1.1.1.qualifier
+Bundle-Vendor: EclipseSource
+Fragment-Host: com.eclipsesource.jaxrs.provider.swagger;bundle-version="1.1.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.mockito.mockito-all;bundle-version="4.11.0",
+ org.junit;bundle-version="4.13.0"

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sse Provider Tests
+Bundle-SymbolicName: org.opennms.eclipsesource.jaxrs.provider.sse.test
+Bundle-Version: 2.2.0.qualifier
+Bundle-Vendor: EclipseSource
+Fragment-Host: com.eclipsesource.jaxrs.provider.sse;bundle-version="2.2.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.mockito.mockito-all;bundle-version="4.11.0",
+ org.junit;bundle-version="4.13.0"
+Import-Package: com.google.common.base,
+ org.glassfish.hk2.utilities,
+ org.glassfish.hk2.utilities.cache,
+ org.glassfish.jersey.internal

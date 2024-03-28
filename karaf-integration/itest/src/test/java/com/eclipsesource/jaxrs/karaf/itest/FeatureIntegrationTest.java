@@ -62,7 +62,7 @@ public class FeatureIntegrationTest {
                 .classifier("features")
                 .type("xml")
                 .versionAsInProject();
-        final MavenUrlReference projectFeatures = maven().groupId("com.eclipsesource.jaxrs")
+        final MavenUrlReference projectFeatures = maven().groupId("org.opennms.eclipsesource.jaxrs")
                 .artifactId("features")
                 .classifier("features")
                 .type("xml")
@@ -106,7 +106,7 @@ public class FeatureIntegrationTest {
                 KarafDistributionOption.features(karafStandardRepo, "http", "scr"),
                 KarafDistributionOption.features(projectFeatures, "jax-rs-connector", "jax-rs-provider-jackson", "jax-rs-shell-commands"),
 
-                mavenBundle().groupId("com.eclipsesource.jaxrs").artifactId("jax-rs-sample").versionAsInProject()
+                mavenBundle().groupId("org.opennms.eclipsesource.jaxrs").artifactId("jax-rs-sample").versionAsInProject()
         );
         return options;
     }

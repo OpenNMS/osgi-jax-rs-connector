@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.eclipsesource.jaxrs</groupId>
+        <groupId>org.opennms.eclipsesource.jaxrs</groupId>
         <artifactId>karaf-integration</artifactId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +13,7 @@
     <name>Karaf Integration - Integration Tests</name>
     <dependencies>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>features</artifactId>
             <version>${project.version}</version>
             <classifier>features</classifier>
@@ -21,9 +21,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>shell-commands</artifactId>
-            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -67,13 +66,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>publisher-api</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.eclipsesource.jaxrs</groupId>
+            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>jax-rs-sample</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
