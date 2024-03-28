@@ -32,11 +32,6 @@
             </dependency>
             <dependency>
                 <groupId>org.opennms.eclipsesource.jaxrs</groupId>
-                <artifactId>jersey-min</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.opennms.eclipsesource.jaxrs</groupId>
                 <artifactId>provider-moxy</artifactId>
                 <version>${project.version}</version>
             </dependency>

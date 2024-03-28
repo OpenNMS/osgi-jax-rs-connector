@@ -120,11 +120,6 @@
         </dependency>
         <dependency>
             <groupId>org.opennms.eclipsesource.jaxrs</groupId>
-            <artifactId>jersey-min</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>publisher-api</artifactId>
             <scope>provided</scope>
         </dependency>
