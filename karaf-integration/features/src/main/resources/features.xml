@@ -12,7 +12,6 @@
         <feature>scr</feature>
         <feature>jax-rs-consumer</feature>
         <feature>jax-rs-publisher</feature>
-        <bundle dependency="true">mvn:org.opennms.eclipsesource.jaxrs/jersey-min/${project.version}</bundle>
     </feature>
 
     <feature name="jax-rs-consumer" version="${project.version}" resolver="(obr)" description="Jersey JAX RS OSGi Consumer">
@@ -111,6 +110,7 @@
         <bundle dependency="true">mvn:org.glassfish.hk2.external/jakarta.inject/${jakarta.inject.version}</bundle>
         <bundle dependency="true">mvn:javax.annotation/javax.annotation-api/${annotation-api.version}</bundle>
         <bundle dependency="true">mvn:org.glassfish.jersey.containers/jersey-container-servlet-core/${jersey.version}</bundle>
+        <bundle dependency="true">mvn:org.glassfish.jersey.containers/jersey-container-servlet/${jersey.version}</bundle>
         <bundle dependency="true">mvn:org.glassfish.jersey.core/jersey-common/${jersey.version}</bundle>
         <bundle dependency="true">mvn:org.glassfish.jersey.core/jersey-client/${jersey.version}</bundle>
         <bundle dependency="true">mvn:org.glassfish.jersey.core/jersey-server/${jersey.version}</bundle>
