@@ -7,6 +7,15 @@
 	<packaging>pom</packaging>
 	<name>OSGi - JAX-RS Connector</name>
 	<description>JAX-RS (JSR311) Connector for OSGi</description>
+	<url>https://github.com/OpenNMS/osgi-jax-rs-connector</url>
+
+	<developers>
+		<developer>
+			<id>ranger</id>
+			<name>Benjamin Reed</name>
+			<email>ranger@opennms.com</email>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
@@ -63,7 +72,6 @@
 	</properties>
 	<modules>
 		<module>connector</module>
-		<module>jersey</module>
 		<module>providers</module>
 		<module>karaf-integration</module>
 	</modules>
