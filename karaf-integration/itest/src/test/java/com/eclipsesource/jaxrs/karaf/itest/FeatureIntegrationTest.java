@@ -87,7 +87,7 @@ public class FeatureIntegrationTest {
                     "etc/org.ops4j.pax.url.mvn.cfg",
                     "org.ops4j.pax.url.mvn.defaultRepositories",
                     String.join(",\n", new String[] {
-                            "file:" + localRepository + "@snapshots@id=default-repo",
+                            "file:" + localRepository + "@id=default-repo@snapshots",
                             "file:${karaf.home}/${karaf.default.repository}@id=system.repository@snapshots",
                             "file:${karaf.data}/kar@id=kar.repository@multi@snapshots",
                             "file:${karaf.base}/${karaf.default.repository}@id=child.system.repository@snapshots"
