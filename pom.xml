@@ -198,6 +198,8 @@
 					<tagNameFormat>v@{project.version}</tagNameFormat>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<releaseProfiles>release</releaseProfiles>
+					<!-- default only runs verify, but Karaf itest requires jax-rs-sample to have been installed -->
+					<preparationGoals>clean install</preparationGoals>
 				</configuration>
 			</plugin>
 			<plugin>
