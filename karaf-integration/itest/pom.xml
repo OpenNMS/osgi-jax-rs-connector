@@ -78,6 +78,14 @@
 
     <build>
         <plugins>
+            <!-- skip deploying to maven central -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
             <!-- Needed if you use versionAsInProject() -->
             <plugin>
                 <groupId>org.apache.servicemix.tooling</groupId>
