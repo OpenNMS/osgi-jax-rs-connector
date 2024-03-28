@@ -71,7 +71,6 @@
             <groupId>org.opennms.eclipsesource.jaxrs</groupId>
             <artifactId>jax-rs-sample</artifactId>
             <version>${project.version}</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>
