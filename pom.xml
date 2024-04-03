@@ -45,7 +45,7 @@
 		<jackson.version>2.17.0</jackson.version>
 		<jackson.annotation.version>${jackson.version}</jackson.annotation.version>
 		<jacocoagent>${basedir}/target/lib/jacocoagent.jar</jacocoagent>
-		<jacoco.version>0.8.11</jacoco.version>
+		<jacoco.version>0.8.12</jacoco.version>
 		<!-- comes from Jersey dependencies -->
 		<jakarta.inject.version>2.6.1</jakarta.inject.version>
 		<javaee-web-api.version>8.0.1</javaee-web-api.version>
