@@ -53,7 +53,7 @@
 		<jaxrs.version>2.1.1</jaxrs.version>
 		<jersey.version>2.42</jersey.version>
 		<junit-version>4.13.2</junit-version>
-		<karaf.version>4.3.10</karaf.version>
+		<karaf.version>4.4.0</karaf.version>
 		<mockito-version>4.11.0</mockito-version>
 		<!-- comes from Jersey dependencies -->
 		<mimepull.version>1.9.15</mimepull.version>
