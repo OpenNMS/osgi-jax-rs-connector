@@ -21,6 +21,7 @@ jobs:
           name: Run the tests
           command: |
             mvn -DskipITs=false clean install
+            zip -r ~/osgi-jaxrs-connector.zip ~/.m2/repository/com/eclipsesource 
       - run:
           name: Save test results
           command: |
@@ -39,5 +40,5 @@ jobs:
           paths:
             - project
       - store_artifacts:
-          path: ~/.m2/repository/com/eclipsesource
+          path: ~/osgi-jaxrs-connector.zip
           destination: osgi-jaxrs-connector.zip
