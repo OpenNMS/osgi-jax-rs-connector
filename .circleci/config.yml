@@ -38,3 +38,6 @@ jobs:
           root: ~/
           paths:
             - project
+      - store_artifacts:
+          path: ~/.m2/repository/com/eclipsesource/osgi-jaxrs-connector
+          destination: osgi-jaxrs-connector.zip
